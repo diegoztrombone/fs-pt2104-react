@@ -3,10 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import data from '../data.json'
 
-const App = (
-  <div>
-    Hello React
-  </div>
-);
+import Greetings from './components/Greetings'
 
-ReactDOM.render(App, document.getElementById("app"));
+const users = ["Diego", "Manuel"]
+const App = (
+   <div>
+     {users.map(user => <Greetings name={user} />)}
+   </div>
+)
+
+
+const root = document.getElementById("app")
+ReactDOM.render(App, root);
