@@ -1,10 +1,12 @@
-export default ({crono, initDate}) => {
+import timeConverter from "../../utils/timeConverter"
+
+export default ({crono}) => {
     return (
         <section>
-            <span>{("0" + Math.floor(((Date.now() - initDate)/3600000) % 60)).slice(-2)}:</span>
-            <span>{("0" + Math.floor(((Date.now() - initDate)/60000) % 60)).slice(-2)}:</span>
-            <span>{("0" + Math.floor(((Date.now() - initDate)/1000) % 60)).slice(-2)}:</span>
-            <span>{("00" + crono).slice(-3)}</span>
+            <span>{timeConverter(crono, "0", -2, 3600000, 24)}:</span>
+            <span>{timeConverter(crono, "0", -2, 60000, 60)}:</span>
+            <span>{timeConverter(crono, "0", -2, 1000, 60)}:</span>
+            <span>{timeConverter(crono, "00", -3)}</span>
         </section>
 
     )

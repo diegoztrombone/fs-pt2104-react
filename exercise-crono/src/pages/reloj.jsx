@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Reloj from '../components/reloj'
+import getDate from '../utils/getTime'
 
 
 export default () => {
@@ -7,19 +8,19 @@ export default () => {
   
 
   const [clock, setClock] = useState({
-    hours: new Date().getHours().toLocaleString(),
-    minutes: new Date().getMinutes().toLocaleString(),
-    seconds: new Date().getSeconds().toLocaleString(),
-    miliseconds: new Date().getMilliseconds().toLocaleString(),
+    hours: getDate().getHours().toLocaleString(),
+    minutes: getDate().getMinutes().toLocaleString(),
+    seconds: getDate().getSeconds().toLocaleString(),
+    miliseconds: getDate().getMilliseconds().toLocaleString(),
   })
 
   useEffect(() => {
     setInterval(() => {
       setClock({
-        hours: new Date().getHours().toLocaleString(),
-        minutes: new Date().getMinutes().toLocaleString(),
-        seconds: new Date().getSeconds().toLocaleString(),
-        miliseconds: new Date().getMilliseconds().toLocaleString(),
+        hours: getDate().getHours().toLocaleString(),
+        minutes: getDate().getMinutes().toLocaleString(),
+        seconds: getDate().getSeconds().toLocaleString(),
+        miliseconds: getDate().getMilliseconds().toLocaleString(),
       })
     }, 1000)
 

@@ -3,7 +3,7 @@ import Cronometro from '../components/cronometro'
 
 export default () => {
     let interval = null
-    
+
     const [crono, setCrono] = useState(0)
     const [flag, setFlag] = useState(false)
     const [initDate, setInitDate] = useState(Date.now())
@@ -14,10 +14,7 @@ export default () => {
     }
 
     useEffect(() => {
-        console.log(">>>USEEFECT")
-        console.log(initDate)
         if (!initDate) {
-            console.log("Entra initDate")
             setCrono(0)
         }
         if (flag) {
@@ -32,7 +29,7 @@ export default () => {
             setCrono(0)
         }
 
-    
+
         console.log(crono)
 
         return () => {
@@ -45,7 +42,7 @@ export default () => {
 
     return (
         <section>
-            <Cronometro crono={crono} initDate={initDate} flag={flag} />
+            <Cronometro crono={crono} />
             <section>
                 <button onClick={onClick(true)}>Start</button>
                 <button onClick={onClick(false)}>Stop</button>
