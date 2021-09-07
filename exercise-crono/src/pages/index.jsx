@@ -1,7 +1,13 @@
+import Reloj from './reloj'
+import Crono from './crono'
+
 export default () => {
   return (
     <section>
-      {/* Your code */}
+      <Crono />
+      {/* <Reloj /> */}
     </section>
+
   )
+
 }
