@@ -1,16 +1,15 @@
-import Index from '../pages/index'
-import Detal from '../pages/detail'
-import Header from '../components/Header'
+import Index from "../pages/index";
+import Detail from "../pages/_detail";
 
 export default [
-    {
-        path: '/',
-        component: Index,
-        exact: true,
-      },
-      {
-        path: '/detail',
-        component: Detal,
-        exact: true,
-      }
-]
+  {
+    path: "/",
+    component: Index,
+    exact: true
+  },
+  {
+    path: "/detail/:pokemon",
+    component: Detail,
+    exact: true
+  }
+];
