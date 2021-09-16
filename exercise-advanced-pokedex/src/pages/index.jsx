@@ -9,21 +9,15 @@ export default () => {
   const [pokedex, setPokedex] = useState([]);
   const [search, setSearch] = useState("");
   const [pokemon, setPokemon] = useState([])
-  const [dbValue, saveToDb] = useState("")
+  const [debounceSearch, setDebounceSearch] = useState("")
 
-  const debouncedSave = useCallback(
-		debounce(nextValue => saveToDb(nextValue), 1000),
-		[],
-	);
+  const debouncedSave = useCallback(debounce(value => setDebounceSearch(value), 1000), [],);
 
   const handleSearch = ({ target }) => {
-    const {value: nextValue} = target
-    setSearch(nextValue);
-    debouncedSave(nextValue)
-    if (!target) {
-      setPokemon([])
-    }
-  
+    setSearch(target.value);
+    debouncedSave(target.value)
+    console.log(target)
+    if(!target.value) setDebounceSearch("")
   }
 
   useEffect(() => {
@@ -34,6 +28,7 @@ export default () => {
         const item = await pokemonService.getOne(pokemon.url);
         setPokedex((prevState) => [...prevState, item.data]);
       }
+
     };
 
     fetchedAPI();
@@ -47,32 +42,33 @@ export default () => {
     });
   };
 
- 
+
   useEffect(() => {
-    if (filter(pokedex).length === 0 && dbValue) {
-      console.log("entra")
+    if (filter(pokedex).length === 0 && debounceSearch) {
+      console.log("Entra")
       const myFetchAPI = async () => {
-        
-        const result = await pokemonService.getOne(`https://pokeapi.co/api/v2/pokemon/${dbValue}`)
-        console.log(result)
+
+        const result = await pokemonService.getOne(`https://pokeapi.co/api/v2/pokemon/${debounceSearch}`)
+        console.log("Consulta", result)
         if (result) {
           setPokemon([result.data])
         }
-        
+
       }
       myFetchAPI()
 
     }
-  }, [dbValue])
+  }, [debounceSearch])
 
-console.log(">>>>", dbValue)
+  console.log(">>>> DEBOUNCE", debounceSearch)
+  console.log(">>>>> POKEMON NUEVO", pokemon)
 
   return (
     <section className="container">
       <Input value={search} onChange={handleSearch} />
       <List data={filter(pokedex)} />
       <List data={pokemon} />
-      
+
     </section>
   );
 };
