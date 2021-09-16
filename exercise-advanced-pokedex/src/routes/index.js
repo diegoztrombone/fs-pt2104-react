@@ -1,5 +1,6 @@
 import Index from "../pages/index";
 import Detail from "../pages/_detail";
+import Error from "../pages/error";
 
 export default [
   {
@@ -10,6 +11,11 @@ export default [
   {
     path: "/detail/:pokemon",
     component: Detail,
+    exact: true
+  },
+  {
+    path: "/error/:pokemon",
+    component: Error,
     exact: true
   }
 ];

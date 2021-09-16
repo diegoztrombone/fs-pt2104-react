@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import pokemonService from "../services/api/index";
 
 import Input from "../components/Input";
-import Filter from "../components/Filter";
+import List from "../components/List";
 
 export default () => {
   const [pokedex, setPokedex] = useState([]);
@@ -19,13 +19,22 @@ export default () => {
         setPokedex((prevState) => [...prevState, item.data]);
       }
     };
+
     fetchedAPI();
   }, []);
+
+  const filter = (list) => {
+    return list.filter(({ name }) => {
+      const result =
+        !search || name.toLowerCase().includes(search.toLowerCase());
+      return result;
+    });
+  };
 
   return (
     <section>
       <Input value={search} onChange={handleSearch} />
-      <Filter pokedex={pokedex} search={search} />
+      <List data={filter(pokedex)} />
     </section>
   );
 };
