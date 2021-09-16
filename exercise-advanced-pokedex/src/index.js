@@ -10,6 +10,7 @@ import {
 
 import Header from './components/Header'
 import Footer from './components/Footer'
+import './style/index.css'
 
 import routes from './routes'
 
